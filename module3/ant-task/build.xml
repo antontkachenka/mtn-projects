@@ -38,19 +38,16 @@
 	</junit>
 </target>
 
-
-
-
 <target name="jar" depends="test">
 	<jar jarfile="${dist}/ant-task.jar" basedir="${build}"/>
 </target>
 
 <target name="dist" depends="jar">
-   <zip destfile="${dist}/${component.timestamp}.zip">
-      <zipfileset dir="${config}"/>
-      <zipfileset dir="${dist}"/>
-      <zipfileset dir="${lib}"/>
-   </zip>
+	<zip destfile="${dist}/${component.timestamp}.zip">
+		<zipfileset dir="${config}"/>
+		<zipfileset dir="${dist}"/>
+		<zipfileset dir="${lib}"/>
+</zip>
 </target>
 
 </project>
