@@ -1,0 +1,56 @@
+<project name="ant-task" default="dist" basedir=".">
+
+<!-- Define the properties used by the build -->
+  <property file="config/project.properties"/>	
+
+<path id="build.classpath">
+	<fileset dir="${lib}" includes="*.jar"/>
+</path>
+
+<target name="clean">
+	<delete dir="${build}"/>
+	<delete dir="${dist}"/>
+</target>  
+
+<target name="init" depends="clean" >
+	<tstamp>
+		<format property="component.timestamp" pattern="yyyy_MM_dd-hh:mm aa"/>
+	</tstamp> 
+	<mkdir dir="${build}"/>
+	<mkdir dir="${dist}"/>
+</target>
+
+<target name="compile" depends="init">
+	<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath"/>
+</target>
+
+<target name="test" depends="compile">
+	<javac srcdir="${test}" destdir="${test}" classpathref="build.classpath"/>
+	<junit printsummary="yes" haltonfailure="no">
+		<classpath path="${lib}">
+		<path refid="build.classpath" />
+		</classpath>
+		<batchtest fork="yes" >
+			<fileset dir="${test}">
+				<include name="${test}/com/test/UnitTest.java"/>
+			</fileset>
+		</batchtest>
+	</junit>
+</target>
+
+
+
+
+<target name="jar" depends="test">
+	<jar jarfile="${dist}/ant-task.jar" basedir="${build}"/>
+</target>
+
+<target name="dist" depends="jar">
+   <zip destfile="${dist}/${component.timestamp}.zip">
+      <zipfileset dir="${config}"/>
+      <zipfileset dir="${dist}"/>
+      <zipfileset dir="${lib}"/>
+   </zip>
+</target>
+
+</project>
