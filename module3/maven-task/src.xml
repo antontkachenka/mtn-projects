@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>src/main/resources/project.properties</include>       
+				<include>pom.xml</include>
+				<include>src.xml</include>
+				<include>target/my-app-1.0-SNAPSHOT.jar</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
