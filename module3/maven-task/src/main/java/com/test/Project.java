@@ -11,9 +11,6 @@ class Project {
   
   public static void main(String[] args) {
     System.out.println("Hellow MTN");
-    System.out.println("Hellow Sonar");
-    System.out.println("Hellow Anton");
-    System.out.println("Hellow Yahor");
   }
 
 }
